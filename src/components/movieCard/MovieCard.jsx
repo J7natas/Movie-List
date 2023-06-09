@@ -7,8 +7,10 @@ const MovieCard = ({ propMovie }) => {
         <div className="MovieCard__Container">
             <img  src={`https://image.tmdb.org/t/p/w1280${propMovie.poster_path}`}></img>
             <p>{propMovie.title}</p>
-            <Link to={`/movie/:${propMovie.id}`}>Ver Detalhe</Link>
         </div>
+        <button>
+         <Link to={`/movie/${propMovie.id}`}>Ver Detalhe</Link>
+        </button>
     </section>
   )
 }

@@ -3,7 +3,7 @@ import { MoviesServes } from "../../api/movie-api";
 import MovieCard from "../../components/movieCard/MovieCard";
 import './index.scss'
 
-const Home = () => {
+const Home = ({ inputValue }) => {
 
   const [movie, setMovie] = useState([]);
 
@@ -12,20 +12,31 @@ const Home = () => {
       setMovie(results)
   }
 
+  const handlerMovie = async (movieString) => {
+    const { data: {results} } = await MoviesServes.getMoieSearch(movieString);
+    
+    setMovie(results)
+  }
+
   useEffect(()=> {
     getMovie();
   },[])
 
   useEffect(()=> {
-    console.log(movie);
-  })
+    if(inputValue) {
+      handlerMovie(inputValue);
+    }
+    if(inputValue === '') {
+      getMovie();
+    }
+  },[inputValue])
 
-  return (
-        <div className="Home"> {movie.map((movie)=>
-          <MovieCard key={movie.id} propMovie={movie} />
-        )}
-        </div>
-    
+
+    return (
+      <div className="Home"> {movie.map((movie)=>
+        <MovieCard key={movie.id} propMovie={movie} />
+      )}
+      </div>
   );
 }
 

@@ -14,6 +14,6 @@ export class MoviesServes {
         return axios(whitBaseUrl(`movie/${id}`));
     }
     static getMoieSearch(movies) {
-        return axios(whitBaseUrl('search/movies') + (`&query=${movies}`));
+        return axios(whitBaseUrl('search/movie') + (`&query=${movies}`));
     }
 }
